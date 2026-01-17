@@ -16,5 +16,8 @@ void main() {
       expect(add('1\n2,3,4,5'), equals(15));
     });
 
+    test('supports custom delimiter', () {
+      expect(add('//;\n1;2;3'), equals(6));
+    });
   });
 }
