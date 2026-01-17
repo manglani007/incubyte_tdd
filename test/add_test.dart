@@ -12,5 +12,9 @@ void main() {
       expect(add('1,2,3,4,5'), equals(15));
     });
 
+    test('handles new lines between numbers', () {
+      expect(add('1\n2,3,4,5'), equals(15));
+    });
+
   });
 }
