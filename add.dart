@@ -9,7 +9,14 @@ int add(String numbers) {
     data = parts[1];
   }
 
-  final commaSeparatedNumbers = data.replaceAll('\n', delimiter).replaceAll(delimiter, ',');
+  final commaSeparatedNumbers = data.replaceAll('\n', delimiter).replaceAll(delimiter, ',').split(',').map(int.parse);
 
-  return commaSeparatedNumbers.split(',').map(int.parse).fold(0, (sum, n) => sum + n);
+  final negatives = commaSeparatedNumbers.where((e) => e < 0);
+  if (negatives.isNotEmpty) {
+    throw Exception(
+      'negative numbers not allowed ${negatives.join(',')}',
+    );
+  }
+
+  return commaSeparatedNumbers.fold(0, (sum, n) => sum + n);
 }

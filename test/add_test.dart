@@ -19,5 +19,18 @@ void main() {
     test('supports custom delimiter', () {
       expect(add('//;\n1;2;3'), equals(6));
     });
+
+    test('throws exception with negative numbers', () {
+      expect(
+        () => add('1,-2,3,-4'),
+        throwsA(
+          isA<Exception>().having(
+            (e) => e.toString(),
+            'message',
+            contains('negative numbers not allowed -2,-4'),
+          ),
+        ),
+      );
+    });
   });
 }
